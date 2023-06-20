@@ -7,7 +7,8 @@ N(1 ≤ N ≤ 100,000)개의 로프가 있다.
 k개의 로프를 사용하여 중량이 w인 물체를 들어올릴 때, 
 각각의 로프에는 모두 고르게 w/k 만큼의 중량이 걸리게 된다.
 
-각 로프들에 대한 정보가 주어졌을 때, 이 로프들을 이용하여 들어올릴 수 있는 물체의 최대 중량을 구해내는 프로그램을 작성하시오. 모든 로프를 사용해야 할 필요는 없으며, 임의로 몇 개의 로프를 골라서 사용해도 된다.
+각 로프들에 대한 정보가 주어졌을 때, 이 로프들을 이용하여 들어올릴 수 있는 물체의 최대 중량을 구해내는 프로그램을 작성하시오. 
+모든 로프를 사용해야 할 필요는 없으며, 임의로 몇 개의 로프를 골라서 사용해도 된다.
 
 1. w(중량) = w(중량)/N(로프의 개수)
 2. min(로프) * N
@@ -15,10 +16,15 @@ k개의 로프를 사용하여 중량이 w인 물체를 들어올릴 때,
 import sys
 
 N = int(sys.stdin.readline())
-lope = []
+lopes = []
 
 for _ in range(N):
-    lope.append(int(sys.stdin.readline()))
+    lopes.append(int(sys.stdin.readline()))
 
-result = min(lope) * N
-sys.stdout.write(str(result))
+lopes.sort()
+weight = []
+for lope in lopes:
+    weight.append(lope*N)
+    N -= 1
+
+sys.stdout.write(str(max(weight)))
