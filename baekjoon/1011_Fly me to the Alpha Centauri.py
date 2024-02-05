@@ -1,4 +1,4 @@
-import sys, math
+import sys
 input = sys.stdin.readline
 
 T = int(input())
@@ -6,21 +6,17 @@ T = int(input())
 for _ in range(T):
 	x, y = map(int, input().split())
 	distance = y - x
-	move_count = 0 # 이동 횟수
 	
-	num = math.floor(math.sqrt(distance))
-	num_square = num ** 2
-	num_square_plus = math.sqrt(num_square)
+	n = 0
 	
-	if distance > num_square + num_square_plus: # ex) x, y = 0, 7
-		move_count = 2 * num + 1 
-	elif distance > num_square and distance <= num_square + num_square_plus: # ex) x, y = 0, 6
-		move_count = 2 * num
-	elif distance == num_square: # ex) x, y = 0, 4
-		move_count = 2 * num - 1
-		
-	if distance <= 3:
-		count = distance
+	while True:
+		if distance <= n*(n+1):
+			break
+		n += 1
 	
-	print(move_count)
-
+	# 총 이동 거리가 n의 제곱보다 작거나 같을 때
+	if distance <= n**2:
+		print(n*2-1)
+	# 총 이동 거리가 n의 제곱보다 클 때
+	else:
+		print(n*2)
